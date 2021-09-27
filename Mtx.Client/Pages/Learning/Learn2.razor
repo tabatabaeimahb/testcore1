@@ -1,0 +1,31 @@
+﻿
+@page "/Learning/Learn2"
+<h3>Learn2</h3>
+
+<h3>One Way Binding: @msg2</h3>
+
+
+<button type="button" @onclick="() => dosomthing()">dosomthing</button>
+<h3>
+    Two Way Binding:
+    <br />
+	<input type="text" class="form-control" @bind="msg2" @bind:event="oninput" />
+	
+  
+</h3>
+<h3>
+    Two Way Binding:
+    <br />
+    <input  type="text" class="form-control" @bind="msg2"  @bind:event="oninput" />
+</h3>
+
+@code {
+
+    // @bind-value==@bind
+
+
+    public void dosomthing()
+    {
+        msg2 = "im click";
+    }
+}

@@ -1,0 +1,83 @@
+﻿@page "/Learning/LifeStyle"
+
+<h3>LifeStyle</h3>
+
+ @*زمان ساخت کامپوننت به ترتیب شماره های 1 تا 3 اجرا شده*@
+<h1>
+    Learning Lifecycle!
+</h1>
+
+<hr />
+
+1. OnInitialized()
+<br />
+2. OnParametersSet()
+<br />
+3. OnAfterRender()
+
+<hr />
+
+<h3>
+    @*بعد از ساخت کامپونت اگر در صفحه مثلا یک دکمه را کلیک کنیم 2 مورد زیر اتفاق می افتد*@
+    Do Some Changes!
+</h3>
+
+<br />
+1. ShouldRender()
+<br />
+2. OnAfterRender()
+
+<hr />
+
+@(message)
+<br />
+<button type="button" @onclick="DoSomething">Change Message</button>
+
+
+@code {
+
+
+    protected override void OnInitialized()
+    {
+        //بعد از کانستراکتور اجرا شده
+        base.OnInitialized();
+
+        Console.WriteLine(nameof(OnInitialized));
+    }
+
+    protected override void OnParametersSet()
+    {
+        // زمانیکه پارامترهای ورودی کامپوننت در حال ست شدن است صدا شده و می توان انها را ولیدیت کرد
+        base.OnParametersSet();
+
+        Console.WriteLine(nameof(OnParametersSet));
+    }
+
+    protected override bool ShouldRender()
+    {
+        //   @*  بعد از ساخت کامپونت اگر در صفحه مثلا یک دکمه را کلیک کنیم زمانی که تغییرات در یو ای بخواهد نمایش داده شود اتوماتیک صدا زده می شود *@
+        //یا زمانی که صفحه و کامپوننت تاش ساخته شد می توان برای رندر شدن مجدد صفحه خودمان این رویداد را صدا بزنیم 
+        bool shouldRender =
+        base.ShouldRender();
+
+        Console.WriteLine(nameof(ShouldRender) + $" - Should Render: { shouldRender }");
+
+        return shouldRender;
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        //بعد از رندر شدن صفحه اتفاق می افتد
+        base.OnAfterRender(firstRender);
+
+        Console.WriteLine(nameof(OnAfterRender) + $" - First Render: { firstRender }");
+    }
+
+
+    private string message = "Message (1)";
+
+    private void DoSomething()
+    {
+        message = "Message (2)";
+    }
+}

@@ -1,0 +1,31 @@
+﻿<h3>ConvertDolarTorial2</h3>
+
+
+<input type="text" @bind="rial" />
+<button type="button" @onclick="convert">convert</button>
+
+@if (res > 0)
+{
+    @res.ToString("#,##0")
+}
+
+
+@code {
+
+    //تعریف پارامتر ورودی برای کامپوننت
+    [Parameter]
+    public int rial { set; get; }
+
+    //تعریف پارامتر ورودی برای کامپوننت
+    [Parameter]
+    public int dolar { set; get; }=30000;
+
+     
+
+    public int res { set; get; }
+    public void convert()
+    {
+        res = dolar * rial;
+    }
+
+}

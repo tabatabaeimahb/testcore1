@@ -1,0 +1,63 @@
+﻿@page "/Learning/Learn3"
+<h3>add new </h3>
+
+
+<input type="text" @bind="newTodoTitle" class="form-control" />
+<br />
+
+<button type="button" @onclick="AddNewTodo">click me</button>
+
+<h1>selected item  @todos.Where(r => r.done == true).Count();</h1>
+<br />
+<div class="row">
+    <div class="col">
+        <ul>
+
+            @foreach (var item in todos)
+            {
+                <li>
+                    <input type="checkbox" @bind="item.done" />
+                     @item.name
+                    <button type="button" @onclick="()=> delete(item)">delete</button>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>
+
+@code {
+
+
+    public string newTodoTitle;
+    public System.Collections.Generic.List<Models.Learning.Model.ToDo> todos;
+
+    protected override void OnInitialized()
+    {
+        todos = new List<Models.Learning.Model.ToDo>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            var
+             r= new Models.Learning.Model.ToDo() { done = false, name ="a"+i};
+
+            todos.Add(r);
+        }
+    }
+
+    public void delete(Models.Learning.Model.ToDo item)
+    {
+        todos.Remove(item);
+        
+    }
+
+    public  void AddNewTodo()
+    {
+
+        var  r = new Models.Learning.Model.ToDo()
+        { done = false, name = newTodoTitle };
+
+        todos.Add(r);
+    }
+
+}

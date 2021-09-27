@@ -1,0 +1,22 @@
+﻿<h3>ConvertDolarToRial</h3>
+
+<input type="text" @bind="rial" />
+<button type="button" @onclick="convert">convert</button>
+
+@if (res>0)
+{
+    @res.ToString("#,##0")
+}
+
+
+@code {
+
+
+    public int rial { set; get; }
+    public int res { set; get; }
+    public void convert()
+    {
+        res = rial * 30000;
+    }
+
+}

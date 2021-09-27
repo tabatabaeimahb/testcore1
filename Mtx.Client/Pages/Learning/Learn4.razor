@@ -1,0 +1,82 @@
+﻿
+@page "/Learning/Learn4"
+<h3>Basket</h3>
+
+
+<table class="table table-hover table-striped"  >
+    <thead>
+        <tr>
+            <th>
+                row
+            </th>
+            <th>
+                count
+            </th>
+            <th>
+                price
+            </th>
+            <th>
+                name
+
+            </th>
+            <th>
+                name
+
+            </th>
+            <th>totalProduct</th>
+           
+            
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < items.Count; i++)
+        {
+            var item = items[i];
+        <tr>
+
+            <td>
+                @(i + 1)
+            </td>
+            <td>
+                @item.count
+            </td>
+            <td>
+                @item.price
+            </td>
+            <td>
+                @item.name
+            </td>
+            <td>
+                @*Bind Function in blazer*@
+                @*روش اصلی*@
+                <button type="button" class="btn btn-primary btn-sm" @onclick=" () => item.Plus()">+</button>
+                <button type="button" class="btn btn-primary btn-sm" @onclick="() => item.Minus()">-</button>>
+            </td>
+
+            @*<td>
+             روش فرعی   
+
+
+             در این روش ما نگاه ابحکت اورینتد نداریم و باید هر کلاس مسئول کار خودش باشد و در این روش
+             ما امدیدم دو تابع زیر را در یک کلاس خارج از کلاس بسکت تعریف کرده ایم  پس از روش بالا می رویم
+
+             <button type="button" class="btn btn-primary btn-sm" @onclick="() => Plus(item)">+</button>
+             <button type="button" class="btn btn-primary btn-sm" @onclick="() => Minus(item)">-</button>
+             </td>*@
+
+            @*Bind Function in blazer *@
+
+            <td>@item.totalProduct()</td>
+
+        </tr>
+        }
+        <tr>
+            <td colspan="5">
+                @items.Sum(e=>e.totalProduct()  )
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+

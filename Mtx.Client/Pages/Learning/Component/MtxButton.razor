@@ -1,0 +1,27 @@
+﻿<br />
+@*با طراحی یک کامپوننت دکمه مثلا برای تغییر مثلا رنگ دکمه فقط یک جا را تغییر داده*@
+<button type="button" class="btn btn bg-primary" @onclick="clickme" > @caption </button>
+
+
+@code {
+
+    [Parameter]
+    public string caption { get; set; } = "not set caption";
+
+
+    ////event bubeling
+    ////ارسال پاامتر به خارج از کامپوننت در از طریق یک رویداد
+    [Parameter]
+    public EventCallback<long> OnMyclick { get; set; }
+
+    public void clickme()
+    {
+        long rial = 1000;
+        OnMyclick.InvokeAsync(rial);
+
+    }
+}
+
+
+
+
